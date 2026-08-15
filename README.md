@@ -137,8 +137,6 @@ docker compose down
 | Flask API + game logic | `backend/app.py` |
 | UI | `frontend/` |
 | Postman starter kit | `postman/API-Heist-Academy.postman_collection.json` |
-| Instructor guide | `docs/INSTRUCTOR_GUIDE.md` |
-| Instructor solutions (full walkthrough) | `docs/INSTRUCTOR_SOLUTIONS.md` |
 | Student cheat sheet | `docs/STUDENT_CHEAT_SHEET.md` |
 | Burp setup | `docs/BURP_SETUP.md` |
 
