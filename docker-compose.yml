@@ -1,0 +1,18 @@
+# API Heist Academy — local educational lab only.
+# Do NOT publish ports to the public internet.
+services:
+  heist:
+    build: .
+    container_name: api-heist-academy
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      DVAPI_HOST: "0.0.0.0"
+      DVAPI_PORT: "5000"
+      DVAPI_DB: "/data/heist.db"
+    volumes:
+      - heist-data:/data
+    restart: unless-stopped
+
+volumes:
+  heist-data:

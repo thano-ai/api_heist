@@ -1,0 +1,247 @@
+{
+  "info": {
+    "name": "API Heist Academy - Starter Kit",
+    "description": "Baseline requests only. Explore, modify, and discover — solutions are intentionally omitted. Local educational lab.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:5000/api" },
+    { "key": "teamName", "value": "Alpha" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "00 Setup",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/health"
+          }
+        },
+        {
+          "name": "List challenges",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/challenges"
+          }
+        },
+        {
+          "name": "Register team",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamName\": \"{{teamName}}\"\n}"
+            },
+            "url": "{{baseUrl}}/game/register"
+          }
+        }
+      ]
+    },
+    {
+      "name": "01 Profiles",
+      "item": [
+        {
+          "name": "Get my profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Team-Name", "value": "{{teamName}}" }],
+            "url": "{{baseUrl}}/user/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 Admin area",
+      "item": [
+        {
+          "name": "Open admin panel",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-Team-Name", "value": "{{teamName}}" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": "{{baseUrl}}/admin"
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 Profile update",
+      "item": [
+        {
+          "name": "Update profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "X-Team-Name", "value": "{{teamName}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@heist.local\"\n}"
+            },
+            "url": "{{baseUrl}}/user/update"
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 Busy endpoint",
+      "item": [
+        {
+          "name": "Call rate-limited route",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Team-Name", "value": "{{teamName}}" }],
+            "url": "{{baseUrl}}/rate-limited"
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 Admin users",
+      "item": [
+        {
+          "name": "Admin users action",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "X-Team-Name", "value": "{{teamName}}" }],
+            "url": "{{baseUrl}}/admin/users"
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Transfers",
+      "item": [
+        {
+          "name": "Send transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Team-Name", "value": "{{teamName}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"bob\",\n  \"amount\": 1\n}"
+            },
+            "url": "{{baseUrl}}/transfer"
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 URL fetch",
+      "item": [
+        {
+          "name": "Fetch a URL",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Team-Name", "value": "{{teamName}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com\"\n}"
+            },
+            "url": "{{baseUrl}}/fetch-url"
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 Diagnostics",
+      "item": [
+        {
+          "name": "Debug endpoint",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Team-Name", "value": "{{teamName}}" }],
+            "url": "{{baseUrl}}/debug"
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 User listing",
+      "item": [
+        {
+          "name": "List users (current)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "X-Team-Name", "value": "{{teamName}}" }],
+            "url": "{{baseUrl}}/v2/users"
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 Webhooks",
+      "item": [
+        {
+          "name": "Send webhook event",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Team-Name", "value": "{{teamName}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"ping\",\n  \"payload\": \"hello\"\n}"
+            },
+            "url": "{{baseUrl}}/webhook"
+          }
+        }
+      ]
+    },
+    {
+      "name": "11 Endgame",
+      "item": [
+        {
+          "name": "Ultimate challenge",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Team-Name", "value": "{{teamName}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flags\": []\n}"
+            },
+            "url": "{{baseUrl}}/ultimate-challenge"
+          }
+        },
+        {
+          "name": "Submit flag (UI mirror)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamName\": \"{{teamName}}\",\n  \"challengeId\": 1,\n  \"flag\": \"\",\n  \"timeSeconds\": 0\n}"
+            },
+            "url": "{{baseUrl}}/game/submit-flag"
+          }
+        },
+        {
+          "name": "Leaderboard",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/game/leaderboard"
+          }
+        }
+      ]
+    }
+  ]
+}

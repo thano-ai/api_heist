@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.db
+.venv/
+venv/
+.env
+.DS_Store
+node_modules/
+*.log
+backend/heist.db
